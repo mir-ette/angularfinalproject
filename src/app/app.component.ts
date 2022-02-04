@@ -8,16 +8,5 @@ import { Product } from './_models/product/product.model';
 })
 export class AppComponent {
   title = 'angular-project';
-  // addedProduct: Product[] = [];
   
-  // Adding Number of product beside without repeating
-//   onItemAdding(product: Product){
-//   console.log(product);
-//   if(this.addedProduct.includes(product))
-//   {
-//     product.Count++;
-//   }else{
-//     this.addedProduct.push(product);
-//   }
-// }
 }

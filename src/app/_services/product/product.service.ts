@@ -1,42 +1,89 @@
+// import { HttpClient } from "@angular/common/http";
 import { EventEmitter } from "@angular/core";
-import { Product } from "src/app/_models/product/product.model";
+// import { Observable } from "rxjs";
+// import { observableToBeFn } from "rxjs/internal/testing/TestScheduler";
+import {  Product } from "src/app/_models/product/product.model";
+import { environment } from "src/environments/environment";
 
 export class ProductService {
-    productsArray: Product[] = [
-        {id:1,name:'Iphone',price:200,discount:20,imageUrl:'https://picsum.photos/200/300',Count:1},
-        {id:2,name:'Ipad',price:1200,discount:150,imageUrl:'https://picsum.photos/200/301',Count:1},
-        {id:3,name:'Mac',price:2100,discount:400,imageUrl:'https://picsum.photos/200/302',Count:1},
-        {id:4,name:'MacAir',price:3200,discount:10,imageUrl:'https://picsum.photos/200/303',Count:1},
-        {id:5,name:'MacAirPro',price:4200,discount:300,imageUrl:'https://picsum.photos/200/304',Count:1},
-        {id:6,name:'Airbods',price:100,discount:0,imageUrl:'https://picsum.photos/200/305',Count:1},
-        {id:7,name:'MacPC',price:8000,discount:30,imageUrl:'https://picsum.photos/200/306',Count:1},
-        {id:8,name:'AppleTV',price:3000,discount:200,imageUrl:'https://picsum.photos/200/307',Count:1}
-      ];
-    private cartArray: Product[] =[];
-    cartHasBeenChanged :EventEmitter<Product []> = new EventEmitter<Product []>();
-    constructor(){
+  removeItem(id: number | undefined) {
+    throw new Error('Method not implemented.');
+  }
+  removeProduct(id: number | undefined) {
+    throw new Error('Method not implemented.');
+  }
+  productsArray: Product[] = [
+    {
+      id: 1, data: [{ name: 'watch', description: 'test', lang: { name: 'en' } }], category: { id: 1, name: 'food' }, tags: [{ name: 'food' }],
+      paymentTypes: [{ name: 'miza' }], price: 2000, discount: 20, imageUrl: "http://picsum.photos/200/300", Count: 1
+    },
+    {
+      id: 2,
+      data: [{ name: 'laptop', description: 'test', lang: { name: 'en' } }], category: { id: 1, name: 'food' }, tags: [{ name: 'food' }],
+      paymentTypes: [{ name: 'miza' }],
+      price: 2000, discount: 20, imageUrl: "http://picsum.photos/200/305", Count: 1
+    },
+    {
+      id: 3, data: [{ name: 'i phone', description: 'test', lang: { name: 'en' } }], category: { name: 'food' }, tags: [{ name: 'food' }],
+      paymentTypes: [{ name: 'miza' }], price: 8000, discount: 80, imageUrl: "http://picsum.photos/200/309", Count: 1
+    },
 
-    }
-    getAllProducts(): Product []{
-        return this.productsArray.splice(0);
-    }
-    getProductById(){}
-    addProduct(product: Product){
-        this.productsArray.push(product);
-    }
-    updateProduct(){}
-    deleteProduct(){}
-    addProductToCart(product:Product){
-        console.log(product);
-        if(this.cartArray.includes(product))
-        {
-          product.Count++;
-        }else{
-          this.cartArray.push(product);
-          this.cartHasBeenChanged.emit(this.cartArray);
-        }
+    {
+      id: 4, data: [{ name: 'mobile', description: 'test', lang: { name: 'en' } }], category: { name: 'food' }, tags: [{ name: 'food' }],
 
+      paymentTypes: [{ name: 'miza' }], price: 9000, discount: 20, imageUrl: "http://picsum.photos/200/308", Count: 1
+    },
+
+
+    {
+      id: 5, data: [{ name: 'tv', description: 'test', lang: { name: 'en' } }], category: { name: 'food' }, tags: [{ name: 'food' }],
+      paymentTypes: [{ name: 'miza' }], price: 1000, imageUrl: "http://picsum.photos/200/307", Count: 1
+    },
+
+    {
+      id: 6, data: [{ name: 'tablet', description: 'test', lang: { name: 'en' } }], category: { name: 'food' }, tags: [{ name: 'food' }],
+      paymentTypes: [{ name: 'miza' }], price: 2000, discount: 20, imageUrl: "http://picsum.photos/200/308", Count: 1
+    },
+
+    {
+      id: 7, data: [{ name: 'camera', description: 'test', lang: { name: 'en' } }], category: { name: 'food' }, tags: [{ name: 'food' }],
+      paymentTypes: [{ name: 'miza' }], price: 4000, imageUrl: "http://picsum.photos/200/309", Count: 1
+    },
+
+    {
+      id: 8, data: [{ name: 'fridge', description: 'test', lang: { name: 'en' } }], category: { name: 'food' }, tags: [{ name: 'food' }],
+      paymentTypes: [{ name: 'miza' }], price: 6000, discount: 30, imageUrl: "http://picsum.photos/200/304", Count: 1
     }
+
+  ];
+  private cartArray: Product[] = [];
+  cartHasBeenChanged: EventEmitter<Product[]> = new EventEmitter<Product[]>();
+  search: any;
+  constructor() {
+
+  }
+  getAllProducts(): Product[]  {
+    return this.productsArray;
+  }
+  getProductById(id: number) {
+    return this.productsArray.find(product => product.id === id)
+
+  }
+  addProduct(product: Product) {
+    this.productsArray.push(product);
+  }
+  updateProduct() { }
+  deleteProduct() { }
+  addProductToCart(product: Product) {
+    console.log(product);
+    if (this.cartArray.includes(product)) {
+      product.Count++;
+    } else {
+      this.cartArray.push(product);
+      this.cartHasBeenChanged.emit(this.cartArray);
+    }
+
+  }
 
 
 }

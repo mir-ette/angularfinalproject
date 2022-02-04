@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit {
 
   addedProducts: Product[] = []; 
   dropdownOpened = false;
-  // productService = new ProductService();
+  //to calculate the discount
     calculateTotal(): number{
     let totalPrice = 0;
     this.addedProducts.forEach(element => {
@@ -34,10 +34,9 @@ export class NavbarComponent implements OnInit {
 
     )
   }
-// Bounus Removing Item when press on button
+//to remove items from cart
   removeItem(item :Product): void{
-  // delete this.addedProducts[0]
-  // this.addedProducts.pop();
+  
     this.addedProducts.splice(this.addedProducts.indexOf(item),1)
 }
 
